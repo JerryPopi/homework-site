@@ -8,6 +8,7 @@ const register = require("./register.js");
 
 let username = 'asdas'
 let userpass = 'domatic'
+app.use(express.static('/', { extensions: ['html'] }));
 
 /*
 let mykey = crypto.createCipher('aes-128-cbc', userpass);
