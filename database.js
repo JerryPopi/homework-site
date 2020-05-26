@@ -33,10 +33,3 @@ con.query("SELECT userpass FROM users", function (err, result, fields) {
   console.log(result[0].userpass);
 });
 
-// con.connect(function (err){
-//     if(err) throw err;
-
-//         if (err) throw err;
-//         console.log(result);
-//     })
-// })
