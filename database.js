@@ -33,3 +33,19 @@ con.query("SELECT userpass FROM users", function (err, result, fields) {
   console.log(result[0].userpass);
 });
 
+exports.usernameVerificator = function (username){
+  con.quet("SELECT username FROM users", function (err, result, fields) {
+    if (err) throw err;
+    result.forEach(element => {
+      console.log(result[element])
+      if (username === result[element].username){
+        console.log("Username is already in use.");
+        
+    }else{
+      return true;
+    }
+    })
+
+    
+  })
+}
