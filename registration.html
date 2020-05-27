@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
     <title>Registration</title>
 </head>
 <body>
-    <form onsubmit="alphanumValidation('usernameField', 'userpassField')">
+    <form onsubmit="">
         <input type="text" id="usernameField">
         <input type="text" id="userpassField">
-        <button type="submit">asdasdasd</button>
+        <button type="submit" id="submitBtn">asdasdasd</button>
     </form>
+    <script src="./socket.js"></script>
     <!-- <script src="./public/database.js"></script>
     <script src="./public/register.js"></script>
     <script src="./app.js"></script> -->

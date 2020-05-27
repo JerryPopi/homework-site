@@ -5,6 +5,8 @@ const app = express();
 const db = require("./database.js");
 const crypto = require("crypto");
 const register = require("./register.js");
+const socket = require("socket.io")
+
 
 //app.use(express.static('/', { extensions: ['html'] }));
 
@@ -28,4 +30,18 @@ app.get("/registration", function (req, res) {
 app.get("/register", function (req, res) {
 	res.sendFile(path.join(__dirname, "/public/register.js"));
   });
-app.listen(3000);
+app.get("/socket.js", function (req, res) {
+	res.sendFile(path.join(__dirname, "/public/socket.js"));
+});
+let server = app.listen(3000);
+
+let io = socket(server);
+io.on('connection', function(socket){
+	console.log("made connection");
+
+	socket.on('credentials', function(data){
+		let username = data.username;
+		let password = data.userpass;
+		register.alphanumValidation(data.username, data.userpass);
+	});
+});

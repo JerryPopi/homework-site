@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const mysql = require("mysql");
 const app = express();
+const reg = require("./register.js");
 
 con = mysql.createConnection({
   host: "localhost",
@@ -34,17 +35,19 @@ con.query("SELECT userpass FROM users", function (err, result, fields) {
 });
 
 exports.usernameVerificator = function (username){
-  con.quet("SELECT username FROM users", function (err, result, fields) {
+  con.query("SELECT username FROM users", function (err, result, fields) {
     if (err) throw err;
-    result.forEach(element => {
-      console.log(result[element])
-      if (username === result[element].username){
-        console.log("Username is already in use.");
-        
-    }else{
-      return true;
+    console.log(result.length);
+    for(let i=0;i<result.length;i++){
+      if(username === result[i].username){
+        console.log("returned false");
+          return false;
+      }else{
+        console.log('returned true');
+        reg.addTodb()
+        break;
+      }
     }
-    })
 
     
   })
