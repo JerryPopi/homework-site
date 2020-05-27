@@ -5,8 +5,8 @@ const app = express();
 const db = require("./database.js");
 const crypto = require("crypto");
 const register = require("./register.js");
-const socket = require("socket.io")
-
+const socket = require("socket.io");
+const uuid = require('uuid/v4');
 
 //app.use(express.static('/', { extensions: ['html'] }));
 
@@ -22,6 +22,7 @@ app.use("/public", express.static("public"));
 //Manage html pages
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "/index.html"));
+  const uniqueId = uuid();
 });
 app.get("/registration", function (req, res) {
   res.sendFile(path.join(__dirname, "/registration.html"));
