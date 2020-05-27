@@ -3,6 +3,8 @@ const path = require("path");
 const mysql = require("mysql");
 const app = express();
 const reg = require("./register.js");
+//const trie = require("trie-search");
+
 
 con = mysql.createConnection({
   host: "localhost",
@@ -29,24 +31,18 @@ module.exports.sqlinsert = function (username, passhash) {
     console.log("1 record inserted");
   });
 };
-con.query("SELECT userpass FROM users", function (err, result, fields) {
-  if (err) throw err;
-  console.log(result[0].userpass);
-});
 
 exports.usernameVerificator = function (username){
-  con.query("SELECT username FROM users", function (err, result, fields) {
+  con.query("SELECT username FROM users WHERE username='"+username+"'", function (err, result, fields) {
     if (err) throw err;
     console.log(result.length);
-    for(let i=0;i<result.length;i++){
-      if(username === result[i].username){
-        console.log("returned false");
-          return false;
-      }else{
-        console.log('returned true');
-        reg.addTodb()
-        break;
-      }
+    console.log(fields);
+    if(result.length>0){
+      console.log('shiot')
+    }else{
+       
+       console.log("not null")
+      reg.addTodb();
     }
 
     

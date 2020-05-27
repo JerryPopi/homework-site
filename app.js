@@ -33,7 +33,7 @@ app.get("/register", function (req, res) {
 app.get("/socket.js", function (req, res) {
 	res.sendFile(path.join(__dirname, "/public/socket.js"));
 });
-let server = app.listen(3000);
+let server = app.listen(80);
 
 let io = socket(server);
 io.on('connection', function(socket){

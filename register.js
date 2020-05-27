@@ -9,7 +9,7 @@ exports.alphanumValidation = function (username, userpass) {
   console.log(username);
   let user = username;
   let alphaNum = /^[0-9a-zA-Z]+$/;
-  console.log(userpass);
+  
   if (userpass.match(alphaNum)) {
     //If validation is passed, hash the password.
     let mykey = crypto.createCipher("aes-128-cbc", userpass);
