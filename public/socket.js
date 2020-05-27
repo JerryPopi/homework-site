@@ -1,4 +1,4 @@
-window.socket = io('http://localhost');
+window.socket = io('http://109.160.116.137:80');
 
 let username = document.getElementById('usernameField');
 let password = document.getElementById('userpassField');
