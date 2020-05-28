@@ -3,6 +3,7 @@ const path = require("path");
 const mysql = require("mysql");
 const app = express();
 const reg = require("./register.js");
+const client = require("./public/client.js");
 //const trie = require("trie-search");
 
 
@@ -32,17 +33,17 @@ module.exports.sqlinsert = function (username, passhash) {
   });
 };
 
-exports.usernameVerificator = function (username){
+exports.usernameVerificator = function (username, passhash){
   con.query("SELECT username FROM users WHERE username='"+username+"'", function (err, result, fields) {
     if (err) throw err;
-    console.log(result.length);
-    console.log(fields);
+
     if(result.length>0){
-      console.log('shiot')
+      console.log('username in use');
+      client.statusResponse(1);
     }else{
-       
-       console.log("not null")
-      reg.addTodb();
+      console.log("not present");
+      client.statusResponse(0);
+      reg.addTodb(username, passhash);
     }
 
     
