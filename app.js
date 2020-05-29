@@ -6,7 +6,10 @@ const db = require("./database.js");
 const crypto = require("crypto");
 const register = require("./register.js");
 const socket = require("socket.io");
-const uuid = require('uuid');
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+//const uuid = require('uuid');
 
 //app.use(express.static('/', { extensions: ['html'] }));
 
@@ -19,10 +22,20 @@ passhash += mykey.final('hex');
 
 app.use("/public", express.static("public"));
 
+app.use(cookieParser());
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
+app.use(bodyParser.urlencoded({extended : true}));
+app.use(bodyParser.json());
+
 //Manage html pages
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "/index.html"));
-  //const uniqueId = uuid();
+  res.cookie('name', 'express').send('cookie set');
+  //res.send("kufte")
 });
 app.get("/success", function (req, res){
 	res.sendFile(path.join(__dirname, "/success.html"));
@@ -36,6 +49,9 @@ app.get("/register", function (req, res) {
   });
 app.get("/socket.js", function (req, res) {
 	res.sendFile(path.join(__dirname, "/public/socket.js"));
+	//res.writeHead(302, {
+	//	'Location': '/success'
+	//})
 });
 let server = app.listen(80);
 

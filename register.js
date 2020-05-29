@@ -14,11 +14,6 @@ exports.alphanumValidation = function (username, userpass) {
 
   if (userpass.match(alphaNum)) {
     //If validation is passed, hash the password.
-
-    /*let mykey = crypto.createCipher("aes-128-cbc", userpass);
-    let passhash = mykey.update("abc", "utf8", "hex");
-    passhash += mykey.final("hex");*/
-
     bcrypt.hash(userpass, saltRounds, function (err, hash) {
       //Check if username exists in database.
       db.usernameVerificator(username, hash);
