@@ -3,18 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
-    <script src="public/client.js"></script>
+    <link rel="stylesheet" href="\homework-site\public\style.css">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script> -->
+    <!-- <script src="public/client.js"></script> -->
     <title>Registration</title>
 </head>
+<style>
+    input[type=text], select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    input[type=password], select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+
+    }
+    
+    input[type=submit] {
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+    
+    div {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    * {margin:0;}
+
+body { 
+  background: rgb(37,38,30);
+  height: 100%;
+}
+    </style>
 <body>
-    <form onsubmit="">
+    <!-- <form action="/regcheck.html" method="post">
         <input type="text" id="usernameField">
         <input type="password" id="userpassField">
         <button type="submit" id="submitBtn">asdasdasd</button>
+    </form> -->
+    <canvas id="golCanvas">Go and look for a new browser.</canvas>
+    <form action="/success" method="POST">
+    <label for="fname">Username</label>
+    <input type="text" id="usernameField" name="usernameField" placeholder="Your username..">
+    <label for="lname">Password</label>
+    <input type="password" id="userpassField" name="passwordField" placeholder="Your password..">
+    <!-- <button type="submit" id="submitBtn">Submit</button> -->
+    <input type="submit" id="submitBtn" value="Submit">
     </form>
-    <script src="./socket.js"></script>
+    <!--<script src="./socket.js"></script>-->
     <!-- <script src="./public/database.js"></script>
     <script src="./public/register.js"></script>
     <script src="./app.js"></script> -->

@@ -4,7 +4,9 @@ const mysql = require("mysql");
 const app = express();
 const reg = require("./register.js");
 const client = require("./public/client.js");
-//const trie = require("trie-search");
+const bcrypt = require("bcrypt");
+const login = require("./login.js");
+const saltRounds = 10
 
 
 con = mysql.createConnection({
@@ -42,10 +44,43 @@ exports.usernameVerificator = function (username, passhash){
       client.statusResponse(1);
     }else{
       console.log("not present");
-      client.statusResponse(0);
+      //client.statusResponse(0);
       reg.addTodb(username, passhash);
     }
-
-    
   })
+}
+
+exports.loginVerification = function (user, password) {
+  let loginAllow = false;
+  let usernameEx = false;
+  let passwordEx = false;
+    con.query("SELECT * FROM users WHERE username = '"+user+"'", function (err, result, fields){
+    	if (err) throw err;
+		bcrypt.compare(password, result[0].userpass, function (err, res){
+		//console.log(result);
+			// if(res){
+			// 	passwordEx = true;
+			// }else{
+			// 	passwordEx = false;
+			// }
+			// if(result[0].username == user){
+			// 	usernameEx = true;
+			// }else{
+			// 	usernameEx = false;
+			// }
+			// if(usernameEx && passwordEx){
+			// 	loginAllow = true;
+			// }
+
+			if(res && result[0].username){
+				loginAllow = true;
+				console.log('reeeee')
+			}
+			if(loginAllow) loginAllow = true;
+			console.log(loginAllow)
+		})
+		//console.log(loginAllow)
+	})
+//console.log(loginAllow)
+return true;
 }
