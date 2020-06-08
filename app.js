@@ -25,7 +25,7 @@ app.use("/public", express.static("public"));
 
 app.use(cookieParser());
 app.use(session({
-	secret: 'secret',
+	secret: 'rikoshet123321',
 	resave: true,
 	saveUninitialized: true
 }));
